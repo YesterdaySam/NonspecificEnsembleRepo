@@ -1,0 +1,33 @@
+1. Enter all behavior data in excel sheets and organize into master folder
+	G:\Shared drives\HasselmoUsers\lwilmerd\OptoBehaviorProject\Analysis\SUBFOLDER_NAME_HERE
+1a. Enter all trial times manually in _trials.xlsx excel sheets
+
+2. Export videos to mp4 format and process through DLC via OB_DLC_Pipeline.m
+	Process in master data folder e.g. G:\Shared drives\HasselmoUsers\lwilmerd\OptoBehaviorProject\OBC Group
+
+3. Import to CMBHome (outputs root objects) via OB_DLC_Pipeline.m
+	Double check DIO or AIO type data and use either getDIOTs.m or getOptoTS.m respectively
+	In master data folder e.g. G:\Shared drives\HasselmoUsers\lwilmerd\OptoBehaviorProject\OBC Group
+
+4. Import crude behavior (outputs bhvrTabs and combineT) via OB_Analyze_Script.m
+	Navigate to Analysis subfolder with copies of excel sheets only or specify individually by cohort
+	Import each single animal first (first block of script after imports)
+	Generate Cohort tables (second block of script, specify mouseInclude if excluding some excel sheets/mice
+	bhvrTabs file/variable is per mouse
+	combineT is for the whole cohort combined
+
+5. Get lap specific Data (outputs filename_lapData.m) via OBC_Analyze_Script.m
+	For each session/day create an excel sheet (filename_trials.xlsx) delineating trial onsets/offsets
+		e.g. OBC21_20231116_104501_tag_trials.xlsx 
+	Use Create Opto TS (getDIOTS.m) and get lap-specific data subblock of script (halfway down)
+	Final bhvrT variable includes accuracy and runs data, speed and fine grained analyses
+
+For Cell Counting
+
+1. Use AutomatedCellCounterAlgorithmV3_0_8_FIX5.ijm 
+	StarDist 10x for cFos and eYFP stains with parameters:
+	cFos:
+	eYFP:
+
+2. Import and Correlate to behavior via OBC_Analyze_CellCounts.m
+	Outputs figures and stats
